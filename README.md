@@ -1,7 +1,7 @@
 # Crypto Rates App in React
 
-## [Live Demo](https://netmagik.github.io/Stocks-App/)
-https://netmagik.github.io/Stocks-App/
+## [Live Demo](https://netmagik.github.io/cryptocurrency-rates/)
+https://netmagik.github.io/cryptocurrency-rates
 
 1. Enter Cryptocurrency symbol & press Enter
 2. Get the latest exchange rate to 1 dollar
