@@ -29,7 +29,7 @@ function App() {
   };
 
 const onChange = e => {
-  const data = symbols.map(obj => obj["currency code"])
+  const data = symbols.map(obj => `${obj["currency code"]} - ${obj["currency name"]}`)
   const input = (e.currentTarget.value).toUpperCase();
 
   // Filter through the codes to create suggestions
