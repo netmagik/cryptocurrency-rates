@@ -63,12 +63,7 @@ function App() {
     setActive(0);
     setFiltered([]);
     setIsShow(false);
-    setQuery(
-      e.currentTarget.innerText.substring(
-        0,
-        e.currentTarget.innerText.indexOf(" ")
-      )
-    );
+    setQuery(e.currentTarget.innerText.substring(0, e.currentTarget.innerText.indexOf(" ")));
     getPrice();
   };
 
@@ -77,7 +72,7 @@ function App() {
       // enter key
       setActive(0);
       setIsShow(false);
-      let code = filtered[active].substring(0, filtered[active].indexOf(" "));
+      let code = filtered[active]?.substring(0, filtered[active].indexOf(" "));
       setQuery(code);
       getPrice();
     } else if (e.keyCode === 38) {
