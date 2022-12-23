@@ -6,13 +6,29 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  
+  color: rgb(73, 73, 73);
+  background: rgb(0, 135, 196);
+  background: linear-gradient(
+    126deg,
+    rgba(0, 135, 196, 0.29735644257703087) 10%,
+    rgba(0, 174, 159, 0.3113620448179272) 56%,
+    rgba(255, 255, 255, 0.9332107843137255) 100%
+  );
 }
 
 .app {
   margin: 30px auto;
-  display: grid;
-  place-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h1,
+p {
+  margin: 20px 0;
+}
+
+.emp {
+  font-weight: 500;
 }
 
 input {
@@ -22,7 +38,7 @@ input {
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   font-size: 16px;
-  margin-top: 50px;
+  margin: 50px auto 0;
   padding: 12px 10px;
   width: 350px;
   text-transform: uppercase;
@@ -40,38 +56,39 @@ label {
 }
 
 .results {
-  margin: 50px;
-  text-transform: uppercase;
-  font-size: 2rem;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 5px;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
-.emp {
-  font-style: italic;
+.rate {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .note {
   text-align: center;
-  max-width: 350px;
+  max-width: 500px;
   margin: 80px auto;
   line-height: 1.4;
   border: 1px solid rgb(204, 219, 232);
   padding: 10px;
-}
-
-.bold {
-  font-weight: bold;
-  font-size: large;
+  background-color: rgba(255, 255, 255, 0.9332107843137255);
 }
 
 .no-autocomplete {
   color: #999;
   padding: 8px;
 }
+
 .autocomplete {
   border: 1px solid #999;
   border-top-width: 0;
   list-style: none;
-  margin-top: 0;
+  margin: 0 auto;
   max-height: 143px;
   overflow-y: auto;
   padding-left: 0;

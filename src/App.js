@@ -120,7 +120,8 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Crypto Exchange Rate</h1>
+      <h1>Digital Currency Exchange Rate</h1>
+      <p>Enter Crypto Symbol to get current exchange rate to USD</p>
 
       {/* Show Input Box */}
       <input
@@ -134,15 +135,21 @@ function App() {
       {/* Show Results */}
 
       {results.rate && (
-        <div>
-          <p className="results">
-            1 {query} = <span className="emp">${results.rate}</span>
+        <div className="results">
+          <p className="rate">
+            1 {query} = ${results.rate}
+          </p>
+          <p className="emp">
+            {results.description} to: {results.toCurrency}
           </p>
           <p>Last Refreshed: {results.date}</p>
-          <p>Currency Exchange Rate from: {results.description} to: {results.toCurrency}</p>
         </div>
       )}
-     
+
+      <p className="note">
+        <span className="emp">Note:</span> The free tier of the stock api has a
+        maximum of 5 requests/minute and 500 requests/day
+      </p>
     </div>
   );
 }
