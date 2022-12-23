@@ -139,13 +139,17 @@ function App() {
           <p className="rate">
             1 {query} = ${results.rate}
           </p>
-          <p className="emp">{results.description} to: {results.toCurrency}</p>
+          <p className="emp">
+            {results.description} to: {results.toCurrency}
+          </p>
           <p>Last Refreshed: {results.date}</p>
-        
         </div>
       )}
-     
-     <p className="note"><span className="emp">Note:</span> The free tier of the stock api has a maximum of 5 requests/minute and 500 requests/day</p>
+
+      <p className="note">
+        <span className="emp">Note:</span> The free tier of the stock api has a
+        maximum of 5 requests/minute and 500 requests/day
+      </p>
     </div>
   );
 }

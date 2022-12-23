@@ -6,7 +6,7 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  color:rgb(73, 73, 73);
+  color: rgb(73, 73, 73);
   background: rgb(0, 135, 196);
   background: linear-gradient(
     126deg,
@@ -18,11 +18,12 @@ body {
 
 .app {
   margin: 30px auto;
-  height:100vh;
+  height: 100vh;
   text-align: center;
 }
 
-h1, p {
+h1,
+p {
   margin: 20px 0;
 }
 
