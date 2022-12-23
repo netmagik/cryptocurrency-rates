@@ -1,22 +1,23 @@
-import React from 'react';
+import React from "react";
 
-const Select = (props) => {
+const Select = ({
+  handleSearch,
+  getPrice,
+  suggestions
+}) => {
 
-    const handleChange = (e) => {
-        props.handleSearch(e.target.value);
-    }
-    return (
-        <div>
-            <label htmlFor="search">Enter Cryptocurrency Symbol:</label>
+  return (
+    <div>
+      <form onSubmit={getPrice}>
+        <label htmlFor="search">Enter Cryptocurrency Symbol:</label>
         <input 
-            name="search"
+            name="search" 
             type="text" 
-            value={props.query} 
-            onChange={handleChange}
-            onKeyPress={props.getPrice}
-        />
-        </div>
-    );
-}
+            suggestions={suggestions}
+            onChange={handleSearch} />
+      </form>
+    </div>
+  );
+};
 
 export default Select;
