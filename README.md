@@ -1,12 +1,10 @@
 # Crypto Rates App in React
 
-## [Live Demo](https://netmagik.github.io/cryptocurrency-rates/)
-https://netmagik.github.io/cryptocurrency-rates
-
 1. Enter Cryptocurrency symbol & press Enter
 2. Get the latest exchange rate to 1 dollar
+3. Autocomplete fills in possible symbol variations
 
 - API: https://www.alphavantage.co/
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<a href="https://netmagik.github.io/Stocks-App/"><img src="https://user-images.githubusercontent.com/3833560/144315049-2f125267-6760-4621-bf7e-ea8d72bbe5a3.png"></a>
+<img src="https://user-images.githubusercontent.com/3833560/209451211-dbac0184-6091-45f3-ba73-67018dc28dd3.png">
