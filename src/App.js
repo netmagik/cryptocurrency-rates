@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import ErrorComponent from "./ErrorComponent";
 
 function App() {
   const key = process.env.REACT_APP_API_KEY;
@@ -14,6 +15,7 @@ function App() {
   const [active, setActive] = useState(0);
   const [filtered, setFiltered] = useState([]);
   const [isShow, setIsShow] = useState(false);
+  const [error, setError] = useState(false);
 
   // Get Symbols for Autocomplete
   const symbols = require("./symbols.json");
@@ -27,6 +29,7 @@ function App() {
       );
       const data = await response.json();
       console.log(data);
+      if (data !== undefined) {
       setResults({
         rate: parseFloat(
           data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
@@ -37,8 +40,10 @@ function App() {
         toCurrency:
           data["Realtime Currency Exchange Rate"]["4. To_Currency Name"],
       });
+    } else setError({error: 'Invalid API Call'})
     } catch (error) {
-      console.log(error);
+      console.log(`Error Message: ${error}`);
+      setError(true);
     }
   };
 
@@ -54,6 +59,7 @@ function App() {
     );
 
     setActive(0);
+    setResults({})
     setFiltered(newFilteredSuggestions);
     setIsShow(true);
     setQuery(e.currentTarget.value);
@@ -69,7 +75,8 @@ function App() {
         e.currentTarget.innerText.indexOf(" ")
       )
     );
-    getPrice();
+    setError(false)
+    getPrice()
   };
 
   const onKeyDown = (e) => {
@@ -77,7 +84,7 @@ function App() {
       // enter key
       setActive(0);
       setIsShow(false);
-      let code = filtered[active].substring(0, filtered[active].indexOf(" "));
+      let code = filtered[active]?.substring(0, filtered[active].indexOf(" "));
       setQuery(code);
       getPrice();
     } else if (e.keyCode === 38) {
@@ -110,7 +117,7 @@ function App() {
       } else {
         return (
           <div className="no-autocomplete">
-            <em>Not found</em>
+            <p className="emp"> Not found</p>
           </div>
         );
       }
@@ -133,7 +140,7 @@ function App() {
       {renderAutocomplete()}
 
       {/* Show Results */}
-
+      {/* 
       {results.rate && (
         <div className="results">
           <p className="rate">
@@ -144,6 +151,25 @@ function App() {
           </p>
           <p>Last Refreshed: {results.date}</p>
         </div>
+      )} */}
+
+      {/* If Error, show error message */}
+      {/* {error && <ErrorComponent></ErrorComponent>} */}
+
+      {error ? (
+        <ErrorComponent></ErrorComponent>
+      ) : (
+        results.rate ? (
+          <div className="results">
+            <p className="rate">
+              1 {query} = ${results.rate}
+            </p>
+            <p className="emp">
+              {results.description} to: {results.toCurrency}
+            </p>
+            <p>Last Refreshed: {results.date}</p>
+          </div>
+        ) : ''
       )}
 
       <p className="note">
