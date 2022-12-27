@@ -3,7 +3,6 @@ import "./App.css";
 import ErrorComponent from "./ErrorComponent";
 
 function App() {
-  const key = process.env.REACT_APP_API_KEY;
 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState({
@@ -21,26 +20,24 @@ function App() {
   const symbols = require("./symbols.json");
 
   // Get Price
-  const getPrice = async (e) => {
-    // e.preventDefault();
+  const getPrice = async () => {
     try {
       const response = await fetch(
-        `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${query}&to_currency=USD&apikey=${key}`
+        `/.netlify/functions/env-function?query=${query}`
       );
       const data = await response.json();
-      console.log(data);
       if (data !== undefined) {
-      setResults({
-        rate: parseFloat(
-          data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
-        ).toLocaleString(),
-        date: data["Realtime Currency Exchange Rate"]["6. Last Refreshed"],
-        description:
-          data["Realtime Currency Exchange Rate"]["2. From_Currency Name"],
-        toCurrency:
-          data["Realtime Currency Exchange Rate"]["4. To_Currency Name"],
-      });
-    } else setError({error: 'Invalid API Call'})
+        setResults({
+          rate: parseFloat(
+            data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+          ).toLocaleString(),
+          date: data["Realtime Currency Exchange Rate"]["6. Last Refreshed"],
+          description:
+            data["Realtime Currency Exchange Rate"]["2. From_Currency Name"],
+          toCurrency:
+            data["Realtime Currency Exchange Rate"]["4. To_Currency Name"],
+        });
+      } else setError({ error: "Invalid API Call" });
     } catch (error) {
       console.log(`Error Message: ${error}`);
       setError(true);
@@ -59,7 +56,7 @@ function App() {
     );
 
     setActive(0);
-    setResults({})
+    setResults({});
     setFiltered(newFilteredSuggestions);
     setIsShow(true);
     setQuery(e.currentTarget.value);
@@ -75,8 +72,8 @@ function App() {
         e.currentTarget.innerText.indexOf(" ")
       )
     );
-    setError(false)
-    getPrice()
+    setError(false);
+    getPrice();
   };
 
   const onKeyDown = (e) => {
@@ -139,9 +136,9 @@ function App() {
       />
       {renderAutocomplete()}
 
-      {/* Show Results */}
-      {/* 
-      {results.rate && (
+      {error ? (
+        <ErrorComponent></ErrorComponent>
+      ) : results.rate ? (
         <div className="results">
           <p className="rate">
             1 {query} = ${results.rate}
@@ -151,25 +148,8 @@ function App() {
           </p>
           <p>Last Refreshed: {results.date}</p>
         </div>
-      )} */}
-
-      {/* If Error, show error message */}
-      {/* {error && <ErrorComponent></ErrorComponent>} */}
-
-      {error ? (
-        <ErrorComponent></ErrorComponent>
       ) : (
-        results.rate ? (
-          <div className="results">
-            <p className="rate">
-              1 {query} = ${results.rate}
-            </p>
-            <p className="emp">
-              {results.description} to: {results.toCurrency}
-            </p>
-            <p>Last Refreshed: {results.date}</p>
-          </div>
-        ) : ''
+        ""
       )}
 
       <p className="note">
