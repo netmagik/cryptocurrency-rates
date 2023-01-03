@@ -76,6 +76,11 @@ function App() {
     getPrice();
   };
 
+  // Escape function - pressing esc while search is focused will clear it
+  // const escFunction = useCallBack((event) => {
+    
+  // })
+
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       // enter key
@@ -90,6 +95,9 @@ function App() {
     } else if (e.keyCode === 40) {
       // down arrow
       return active - 1 === filtered.length ? null : setActive(active + 1);
+    } else if (e.keyCode === 27) {
+      setQuery('')
+      setResults({})
     }
   };
 
