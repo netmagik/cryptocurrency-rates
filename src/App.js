@@ -130,6 +130,7 @@ function App() {
       {/* Show Input Box */}
       <input
         type="text"
+        autoFocus
         onChange={onChange}
         onKeyDown={onKeyDown}
         value={query || ""}
